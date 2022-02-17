@@ -1,0 +1,26 @@
+global {
+   project agent
+}
+
+host hostpp {
+   openstack {
+      user root
+      user_data {
+         apt-get update
+         apt-get -y install jed
+	 wget http://apt.puppetlabs.com/puppet6-release-focal.deb 
+	 dpkg -i puppet6-release-focal.deb 
+         apt-get update
+	 apt-get -y install puppet-agent
+	 echo "10.0.61.170 master.openstacklocal master" >> /etc/hosts	 
+         /opt/puppetlabs/puppet/bin/puppet apply agent.pp
+      }
+      image Ubuntu-20.04-LTS
+      flavor m1.small
+      keypair master
+   }
+   network eth0 {
+        net netsys_net
+        address dhcp
+   }
+}
