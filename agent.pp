@@ -17,6 +17,7 @@ augeas { "puppet.conf" :
        changes => [
                    "set agent/server $master",
 		   "set agent/runinterval 600",
+		   "set rundir = /var/run/pe-puppet",
        ],  
        notify => Service['puppet'],
 }
