@@ -13,7 +13,7 @@ augeas { "puppet_default" :
        notify => Service['puppet'],
        }
 augeas { "puppet.conf" :
-       context => "/files/etc//puppetlabs/puppet/puppet.conf",
+       context => "/files/etc/puppetlabs/puppet/puppet.conf",
        changes => [
                    "set agent/server $master",
 		   "set agent/runinterval 600",
